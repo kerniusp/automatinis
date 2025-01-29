@@ -64,16 +64,21 @@ public class StreamPraktiniai {
     public static Integer sum(List<Integer> integers){
 
         return integers.stream()
-                
+                .mapToInt(numb -> numb)
+                .sum();
 
     }
 
     public static List<Integer> skip(List<Integer> integers, Integer toSkip){
-        throw new UnsupportedOperationException("Not implemented");
+
+        return integers.stream().filter(numb -> numb.intValue() > toSkip.intValue()).toList();
+
     }
 
     public static List<String> getFirstNames(List<String> names){
-        throw new UnsupportedOperationException("Not implemented");
+
+        return names;
+
     }
 
     public static List<String> getDistinctLetters(List<String> names){
