@@ -21,6 +21,7 @@ public class test {
     void setup(){
         driver = new ChromeDriver();
         driver.get("https://www.saucedemo.com/");
+        driver.manage().window().fullscreen();
 
     }
 
