@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +24,7 @@ public class Registration {
     String email = randomEmail();
     String password = "slaptazodis123+-RS*";
     @BeforeEach
-    void startup() {
+    void setUp() {
 
         driver = new ChromeDriver();
         driver.get("http://192.168.89.130/");
@@ -80,6 +81,8 @@ public class Registration {
         assertEquals(lastname,inputValue2,"lastname values do not match");
         assertEquals(email,driver.findElement(By.id("field-email")).getAttribute("value"),"emails do not match");
 
+        deleteData();
+
     }
 
     @ParameterizedTest
@@ -102,6 +105,8 @@ public class Registration {
 
         assertEquals("http://192.168.89.130/registration",driver.getCurrentUrl());
     }
+
+
 
     String randomName(){
 
@@ -130,6 +135,30 @@ public class Registration {
         // Combine username and domain to form the email
         return username + "@" + domain;
     }
+
+
+    void deleteData(){
+
+        driver.get("http://192.168.89.130/administration/");
+        driver.findElement(By.id("email")).sendKeys("user@example.com");
+        driver.findElement(By.id("passwd")).sendKeys("sl:bg2Ptbx6o");
+        driver.findElement(By.id("submit_login")).click();
+
+        driver.findElement(By.cssSelector("li#subtab-AdminParentCustomer > .link")).click();
+        driver.findElement(By.cssSelector("li#subtab-AdminCustomers > .link")).click();
+
+        driver.findElement(By.cssSelector(".column-filters > td:nth-of-type(1) > .md-checkbox")).click();
+        driver.findElement(By.cssSelector(".btn.btn-outline-secondary.dropdown-toggle.js-bulk-actions-btn")).click();
+        driver.findElement(By.cssSelector("button#customer_grid_bulk_action_delete_selection")).click();
+
+        driver.findElement(By.cssSelector("div:nth-of-type(1) > .form-check-label.required")).click();
+        driver.findElement(By.cssSelector("div#customer_grid_delete_customers_modal > .modal-dialog  .modal-footer > button:nth-of-type(2)")).click();
+
+
+
+
+    }
+
 
 
 
