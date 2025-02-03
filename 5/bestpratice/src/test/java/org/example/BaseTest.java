@@ -16,7 +16,7 @@ public class BaseTest {
 
     public String name = "Tomas";
     public String lastname = "Tomauskas";
-    public String gmail = "vardas17@gmail.com";
+    public String gmail = "vardas21@gmail.com";
     public String password = "slapt123!DD";
 
 
@@ -30,12 +30,12 @@ public class BaseTest {
 
 
 
-    @AfterEach
-    void tearDown(){
-
-        if(driver != null){
-            driver.quit();
-        }
-    }
+//    @AfterEach
+//    void tearDown(){
+//
+//        if(driver != null){
+//            driver.quit();
+//        }
+//    }
 
 }

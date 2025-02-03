@@ -48,7 +48,9 @@ public class RegistrationTest extends BaseTest{
 
 
         System.out.println(profilePage.getUserNames());
+
         Assert.assertEquals(name + " " + lastname, profilePage.getUserNames());
+        Assert.assertEquals(gmail,profilePage.getEmail());
 
     }
 

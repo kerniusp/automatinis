@@ -20,11 +20,18 @@ public class ProfilePage extends BasePage{
     @FindBy(id="field-lastname")
     private WebElement fieldlastName;
 
+    @FindBy(id="field-email")
+    private WebElement fieldEmail;
+
     public void clickLinkInformation(){
         linkInformation.click();
     }
 
     public String getUserNames(){
        return fieldName.getAttribute("value") + " " + fieldlastName.getAttribute("value");
+    }
+
+    public String getEmail(){
+        return fieldEmail.getAttribute("value");
     }
 }
