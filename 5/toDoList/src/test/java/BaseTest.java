@@ -1,3 +1,4 @@
+import org.example.MainPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,9 +8,9 @@ import java.time.Duration;
 public class BaseTest {
 
 
-    private String task1 = "To do dishes";
-    private String task2 = "Cook dinner";
+    private String task = "task";
     WebDriver driver;
+
 
     @BeforeEach
     void startup(){
@@ -21,11 +22,7 @@ public class BaseTest {
 
     }
 
-    public String getTask1() {
-        return task1;
-    }
-
-    public String getTask2() {
-        return task2;
+    public String getTask() {
+        return task;
     }
 }

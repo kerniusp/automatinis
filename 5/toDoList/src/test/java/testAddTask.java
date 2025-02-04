@@ -13,19 +13,33 @@ public class testAddTask extends BaseTest{
     void mainFunctionality(){
         MainPage mainPage = new MainPage(driver);
 
-        mainPage.enterTask(getTask1());
-        Assert.assertEquals(getTask1(), mainPage.getLastTask());
 
-        mainPage.enterTask(getTask2());
-        Assert.assertEquals(getTask2(),mainPage.getLastTask());
+        //Prideda 3 taskus
+        for(int i = 0; i <= 3; i++){
+            String output = getTask() + i;
+            mainPage.enterTask(output);
+            Assert.assertEquals(output, mainPage.getLastTask());
+        }
 
+
+        //Pazymi pirma ir paskutini task kaip completed
         mainPage.clickFirstToDoTask();
+        mainPage.clickLastToDoTask();
 
-        System.out.println(mainPage.checkIfFirstTaskIsSelected());
-        Assert.assertTrue(mainPage.checkIfFirstTaskIsSelected());
+        Assert.assertTrue(mainPage.checkIfTaskIsCompleted(mainPage.getFirstCompletedElement()));
+        Assert.assertTrue(mainPage.checkIfTaskIsCompleted(mainPage.getLastCompletedElement()));
 
+
+
+
+        //Patikrina ar paspaudus completed rodo tik completed taskus
         mainPage.clickCompleted();
-        Assert.assertTrue(mainPage.checkIfAppearInCompleted(getTask1()));
+
+        for(int i = 0; i < mainPage.getCompletedTasks().size(); i++){
+
+            Assert.assertTrue(mainPage.checkIfAppearInCompleted(mainPage.getCompletedTasks().get(i)));
+
+        }
 
     }
 
