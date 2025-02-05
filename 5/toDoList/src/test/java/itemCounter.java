@@ -1,7 +1,7 @@
 import org.example.MainPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
+
 
 public class itemCounter extends BaseTest{
 
@@ -11,12 +11,9 @@ public class itemCounter extends BaseTest{
 
         MainPage mainPage = new MainPage(driver);
 
-        int counter = 0;
-        for(int i = 1; i <= 3; i++){
-            mainPage.enterTask("Task "+ i);
-            counter++;
-        }
-        Assert.assertEquals(counter,mainPage.displayedTextOfCountedList());
+        int countAmount = addTask(mainPage,3);
+
+        Assert.assertEquals(countAmount,mainPage.displayedTextOfCountedList());
 
     }
 
@@ -24,18 +21,15 @@ public class itemCounter extends BaseTest{
     void removingTask() {
         MainPage mainPage = new MainPage(driver);
 
-        int counter = 0;
-        for(int i = 1; i <= 5; i++){
-            mainPage.enterTask("Task "+ i);
-            counter++;
-        }
+        int countAmount = addTask(mainPage,5);
 
         for(int i = 1; i <= 3; i++){
             mainPage.moveMouseAndDeleteTasks();
-            counter--;
+            countAmount--;
         }
-        Assert.assertEquals(counter,mainPage.displayedTextOfCountedList());
+        Assert.assertEquals(countAmount,mainPage.displayedTextOfCountedList());
 
 
     }
+
 }

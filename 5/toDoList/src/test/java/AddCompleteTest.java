@@ -1,11 +1,8 @@
-import org.example.BasePage;
 import org.example.MainPage;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
-public class testAddTask extends BaseTest{
+public class AddCompleteTest extends BaseTest{
 
 
 

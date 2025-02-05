@@ -25,4 +25,13 @@ public class BaseTest {
     public String getTask() {
         return task;
     }
+
+    public int addTask(MainPage mainPage,int numb){
+        int counter = 0;
+        for(int i = 1; i <= numb; i++){
+            mainPage.enterTask("Task "+ i);
+            counter++;
+        }
+        return counter;
+    }
 }

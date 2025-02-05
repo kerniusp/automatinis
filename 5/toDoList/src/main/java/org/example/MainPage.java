@@ -51,6 +51,19 @@ public class MainPage extends BasePage{
     @FindBy(css=".todo-count")
     private WebElement spanItemsLeft;
 
+    @FindBy(className = "clear-completed")
+    private WebElement buttonClearCompleted;
+
+    @FindBy(className = "toggle")
+    private List<WebElement> inputToggle;
+
+    @FindBy(className = "completed")
+    private List<WebElement> completedListOfTasks;
+
+    public List<WebElement> getCompletedListOfTasks() {
+        return completedListOfTasks;
+    }
+
     public void enterTask(String task){
         fieldToDo.sendKeys(task);
         fieldToDo.sendKeys(Keys.ENTER);
@@ -67,7 +80,7 @@ public class MainPage extends BasePage{
 
     public void clickLastToDoTask(){
         checkboxForLastElement.click();
-        completedTasks.add(lastCompletedElement);
+
     }
 
     public boolean checkIfTaskIsCompleted(WebElement completed){
@@ -91,6 +104,15 @@ public class MainPage extends BasePage{
     public void moveMouseAndDeleteTasks() {
         actions.moveToElement(firstCompletedElement).perform();
         firstXButton.click();
+    }
+
+    public void clickClearCompleted(){
+        buttonClearCompleted.click();
+    }
+
+    public void clickToggle(int numb){
+        inputToggle.get(numb).click();
+
     }
 
     public int displayedTextOfCountedList(){
