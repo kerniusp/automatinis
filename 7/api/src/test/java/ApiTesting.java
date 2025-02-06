@@ -1,4 +1,5 @@
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.given;
@@ -35,14 +36,19 @@ public class ApiTesting {
             }
             """;
     id =
-        given()
+            given()
                 .contentType(ContentType.JSON)
                 .headers("Authorization", "Bearer " + "05236993a6fad8b6f88fe35fa3b51df2f1bcd5c5fe1c4daf3ab7b3a10177f758")
                 .body(user)
                 .post("https://gorest.co.in/public/v2/users")
                 .then()
-                .log().body()
+                .log().all()
+                    .assertThat()
+                    .statusCode(201)
                 .extract().path("id");
+
+
+
 
     }
 
@@ -54,7 +60,7 @@ public class ApiTesting {
                 .headers("Authorization", "Bearer " + "05236993a6fad8b6f88fe35fa3b51df2f1bcd5c5fe1c4daf3ab7b3a10177f758")
                 .get("https://gorest.co.in/public/v2/users/" + id)
                 .then()
-                .log().body();
+                .log().all();
 
 
 
@@ -79,8 +85,6 @@ public class ApiTesting {
                 .get("https://gorest.co.in/public/v2/users/" + id)
                 .then()
                 .log().body();
-
-
 
     }
 }
